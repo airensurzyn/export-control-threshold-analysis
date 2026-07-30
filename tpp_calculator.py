@@ -1,12 +1,12 @@
 """
 tpp_calculator.py  —  BIS ECCN 3A090 export-control classifier (starter scaffold)
 
-Reconstructs the numerical control lines from the regulatory text
-so every downstream classification/chart inherits one audited definition.
+The heart of "Idea 1". Reconstructs the numerical control lines from the reg text
+so every downstream classification/chart inherits ONE audited definition.
 
-Regulatory definitions:
+Regulatory definitions (cite these in your writeup):
   * TPP  = 2 * MacTOPS * bit_length, aggregated over all processing units,
-           evaluated PER precision on DENSE (no-sparsity) matrices.
+           evaluated PER precision on DENSE (no-sparsity) matrices, take the MAX.
            In practice 2*MacTOPS == the dense TOPS/FLOPS a datasheet reports, so
            TPP(precision) = dense_throughput(precision) * bit_length.
   * Performance density = TPP / applicable_die_area_mm^2
@@ -15,6 +15,11 @@ Regulatory definitions:
   * 3A090.a controlled if:  TPP >= 4800
                             OR (TPP >= 1600 AND density >= 5.92)
 
+IMPORTANT: the per-chip numbers below are ILLUSTRATIVE starter values so the
+scaffold runs. Before you trust any of them, replace each with a figure you have
+personally traced to a manufacturer datasheet, and record the source + whether it
+is dense or with-sparsity. Datasheet inconsistency (sparsity, SXM vs PCIe variant)
+is the #1 error source in this project — see notes on each chip.
 """
 
 from __future__ import annotations

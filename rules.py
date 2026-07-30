@@ -5,7 +5,7 @@ Scores each chip under successive rule VINTAGES so status *migration* becomes
 visible -- e.g. the A800/H800 are free under the Oct-2022 rule but caught by the
 Oct-2023 TPP rule (the interconnect loophole being closed).
 
-Vintages modeled:
+Vintages modeled (cite these in the writeup):
 
   2022-10-07  Original ECCN 3A090. Controlled IFF BOTH:
                 TPP >= 4800  AND  interconnect >= 600 GB/s.

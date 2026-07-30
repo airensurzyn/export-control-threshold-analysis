@@ -2,7 +2,8 @@
 load_chips.py  —  build Chip objects from the provenance-tracked CSVs and classify.
 
 Data now lives in data/*.csv (one number = one row = one source), NOT hardcoded in
-Python.
+Python. To add a chip: append rows to data/chips.csv and data/throughput.csv with a
+source for every value. No code changes needed.
 
   data/chips.csv       one row per chip   (die area, node, source)
   data/throughput.csv  one row per (chip, precision)  (dense throughput, source)
@@ -58,6 +59,8 @@ def load_chips(data_dir: str = DATA_DIR) -> list[Chip]:
                 nonplanar_node=_to_bool(row["nonplanar_node"]),
                 interconnect_gbps=float(ic) if ic else None,
                 memory_bandwidth_gbps=float(mem) if mem else None,
+                release_date=(row.get("release_date", "").strip() or None),
+                market=row.get("market", "").strip(),
                 source_notes=row.get("die_area_source", ""),
             ))
     return chips
@@ -71,6 +74,11 @@ GROUND_TRUTH = {
     # A800/H800 kept full compute -> caught by the 2023 TPP rule (loophole closed)
     "NVIDIA A800 (SXM 80GB)": True,
     "NVIDIA H800 (SXM)": True,
+    # Newer parts: all well above 4800 TPP -> controlled under 2023
+    "NVIDIA H200 (SXM)": True,
+    "NVIDIA B200": True,
+    "AMD MI300X": True,
+    "AMD MI325X": True,
 }
 
 

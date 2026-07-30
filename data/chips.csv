@@ -1,10 +1,10 @@
 name,die_area_mm2,nonplanar_node,node,memory_bandwidth_gbps,interconnect_gbps,release_date,market,die_area_source
-NVIDIA A100 (SXM 80GB),826.0,TRUE,TSMC N7,2039,600,2020-11,global,UNVERIFIED die area - datasheet has no die size; use die-shot/TechPowerUp source
-NVIDIA H100 (SXM),814.0,TRUE,TSMC 4N,3350,900,2022-09,global,UNVERIFIED die area - datasheet confirms 4N/80B transistors but no die size
-NVIDIA H20,814.0,TRUE,TSMC 4N,4000,900,2024-01,china,UNVERIFIED - confirm against official H20 product spec
-NVIDIA A800 (SXM 80GB),826.0,TRUE,TSMC N7,2039,400,2022-11,china,UNVERIFIED - A800 = A100 compute; NVLink cut 600->400 to dodge Oct-2022 interconnect limit
-NVIDIA H800 (SXM),814.0,TRUE,TSMC 4N,3350,400,2023-03,china,UNVERIFIED - H800 AI compute = H100; NVLink cut 900->400; FP64 reduced (not TPP-driving)
-NVIDIA H200 (SXM),814.0,TRUE,TSMC 4N,4800,900,2024-06,global,UNVERIFIED die area - same GH100 die as H100; named in Jan-2026 case-by-case rule
-NVIDIA B200,,TRUE,TSMC 4NP,7700,1800,2024-12,global,UNVERIFIED - dual-die Blackwell; applicable die area ambiguous (ledger)
-AMD MI300X,,TRUE,TSMC N5/N6,5300,896,2023-12,global,UNVERIFIED - chiplet (XCD+IOD); applicable die area ambiguous (ledger)
-AMD MI325X,,TRUE,TSMC N5/N6,6000,896,2024-10,global,UNVERIFIED - chiplet; named in Jan-2026 case-by-case rule; die area ambiguous (ledger)
+NVIDIA A100 (SXM 80GB),826.0,true,TSMC N7,2039,600,2020-11,global,UNVERIFIED die area - datasheet has no die size; use die-shot/TechPowerUp source
+NVIDIA H100 (SXM),814.0,true,TSMC 4N,3350,900,2022-09,global,UNVERIFIED die area - datasheet confirms 4N/80B transistors but no die size
+NVIDIA H20,814.0,true,TSMC 4N,4000,900,2024-01,china,UNVERIFIED - confirm against official H20 product spec
+NVIDIA A800 (SXM 80GB),826.0,true,TSMC N7,2039,400,2022-11,china,UNVERIFIED - A800 = A100 compute; NVLink cut 600->400 to dodge Oct-2022 interconnect limit
+NVIDIA H800 (SXM),814.0,true,TSMC 4N,3350,400,2023-03,china,UNVERIFIED - H800 AI compute = H100; NVLink cut 900->400; FP64 reduced (not TPP-driving)
+NVIDIA H200 (SXM),814.0,true,TSMC 4N,4800,900,2024-06,global,UNVERIFIED die area - same GH100 die as H100; named in Jan-2026 case-by-case rule
+NVIDIA B200,,true,TSMC 4NP,7700,1800,2024-12,global,UNVERIFIED - dual-die Blackwell; applicable die area ambiguous (ledger)
+AMD MI300X,,true,TSMC N5/N6,5300,896,2023-12,global,UNVERIFIED - chiplet (XCD+IOD); applicable die area ambiguous (ledger)
+AMD MI325X,,true,TSMC N5/N6,6000,896,2024-10,global,UNVERIFIED - chiplet; named in Jan-2026 case-by-case rule; die area ambiguous (ledger)
