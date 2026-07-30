@@ -1,6 +1,55 @@
-name,bit_length,dense_tops,with_sparsity,source
-NVIDIA A100 (SXM 80GB),16,312,FALSE,https://www.nvidia.com/content/dam/en-zz/Solutions/Data-Center/a100/pdf/nvidia-a100-datasheet-nvidia-us-2188504-web.pdf
-NVIDIA A100 (SXM 80GB),8,624,FALSE,https://www.nvidia.com/content/dam/en-zz/Solutions/Data-Center/a100/pdf/nvidia-a100-datasheet-nvidia-us-2188504-web.pdf
-NVIDIA H100 (SXM),16,989,FALSE,https://resources.nvidia.com/en-us-gpu-resources/h100-datasheet-24306
-NVIDIA H100 (SXM),8,1979,FALSE,https://resources.nvidia.com/en-us-gpu-resources/h100-datasheet-24306
-NVIDIA H20,16,148,FALSE,UNVERIFIED - replace with datasheet URL (FP16 dense)
+name,precision,type,bit_length,dense_tops,with_sparsity,source
+NVIDIA A100 (SXM 80GB),FP64,float,64,9.7,FALSE,NVIDIA A100 datasheet (2188504) dense column
+NVIDIA A100 (SXM 80GB),FP64 Tensor Core,float,64,19.5,FALSE,NVIDIA A100 datasheet (2188504) dense column
+NVIDIA A100 (SXM 80GB),FP32,float,32,19.5,FALSE,NVIDIA A100 datasheet (2188504) dense column
+NVIDIA A100 (SXM 80GB),TF32,float,32,156,FALSE,NVIDIA A100 datasheet (2188504) dense col; note TF32 uses ~19 internal bits (ledger)
+NVIDIA A100 (SXM 80GB),BF16,float,16,312,FALSE,NVIDIA A100 datasheet (2188504) dense column
+NVIDIA A100 (SXM 80GB),FP16,float,16,312,FALSE,NVIDIA A100 datasheet (2188504) dense column
+NVIDIA A100 (SXM 80GB),INT8,int,8,624,FALSE,NVIDIA A100 datasheet (2188504) dense column
+NVIDIA H100 (SXM),FP64,float,64,34,FALSE,H100 datasheet (2430615) SXM col; not starred = already dense
+NVIDIA H100 (SXM),FP64 Tensor Core,float,64,67,FALSE,H100 datasheet (2430615) SXM col; not starred = already dense
+NVIDIA H100 (SXM),FP32,float,32,67,FALSE,H100 datasheet (2430615) SXM col; not starred = already dense
+NVIDIA H100 (SXM),TF32,float,32,494.5,FALSE,H100 datasheet (2430615) derived: 989 sparse / 2; TF32 ~19 internal bits (ledger)
+NVIDIA H100 (SXM),BF16,float,16,989.5,FALSE,H100 datasheet (2430615) derived: 1979 sparse / 2
+NVIDIA H100 (SXM),FP16,float,16,989.5,FALSE,H100 datasheet (2430615) derived: 1979 sparse / 2
+NVIDIA H100 (SXM),FP8,float,8,1979,FALSE,H100 datasheet (2430615) derived: 3958 sparse / 2
+NVIDIA H100 (SXM),INT8,int,8,1979,FALSE,H100 datasheet (2430615) derived: 3958 sparse / 2
+NVIDIA H20,FP64,float,64,1,FALSE,SECONDARY - no official NVIDIA datasheet (China-only); corroborated 3rd-party (SemiAnalysis/wccftech)
+NVIDIA H20,TF32,float,32,74,FALSE,SECONDARY - no official datasheet; corroborated 3rd-party (dense)
+NVIDIA H20,BF16,float,16,148,FALSE,SECONDARY - no official datasheet; corroborated 3rd-party (dense)
+NVIDIA H20,FP16,float,16,148,FALSE,SECONDARY - no official datasheet; corroborated 3rd-party (dense)
+NVIDIA H20,FP8,float,8,296,FALSE,SECONDARY - no official datasheet; corroborated 3rd-party (dense)
+NVIDIA H20,INT8,int,8,296,FALSE,SECONDARY - no official datasheet; corroborated 3rd-party (dense)
+NVIDIA A800 (SXM 80GB),FP64,float,64,9.7,FALSE,A800 compute identical to A100 (datasheet 2188504 dense)
+NVIDIA A800 (SXM 80GB),FP64 Tensor Core,float,64,19.5,FALSE,A800 compute identical to A100 (datasheet 2188504 dense)
+NVIDIA A800 (SXM 80GB),FP32,float,32,19.5,FALSE,A800 compute identical to A100 (datasheet 2188504 dense)
+NVIDIA A800 (SXM 80GB),TF32,float,32,156,FALSE,A800 compute identical to A100 (datasheet 2188504 dense); TF32 ~19 internal bits (ledger)
+NVIDIA A800 (SXM 80GB),BF16,float,16,312,FALSE,A800 compute identical to A100 (datasheet 2188504 dense)
+NVIDIA A800 (SXM 80GB),FP16,float,16,312,FALSE,A800 compute identical to A100 (datasheet 2188504 dense)
+NVIDIA A800 (SXM 80GB),INT8,int,8,624,FALSE,A800 compute identical to A100 (datasheet 2188504 dense)
+NVIDIA H800 (SXM),FP32,float,32,67,FALSE,H800 AI compute matches H100 (datasheet 2430615 SXM); dense
+NVIDIA H800 (SXM),TF32,float,32,494.5,FALSE,H800 matches H100; derived 989 sparse / 2
+NVIDIA H800 (SXM),BF16,float,16,989.5,FALSE,H800 matches H100; derived 1979 sparse / 2
+NVIDIA H800 (SXM),FP16,float,16,989.5,FALSE,H800 matches H100; derived 1979 sparse / 2
+NVIDIA H800 (SXM),FP8,float,8,1979,FALSE,H800 matches H100; derived 3958 sparse / 2
+NVIDIA H800 (SXM),INT8,int,8,1979,FALSE,H800 matches H100; derived 3958 sparse / 2
+NVIDIA H200 (SXM),FP64,float,64,34,FALSE,H200 shares GH100 die with H100; dense
+NVIDIA H200 (SXM),FP32,float,32,67,FALSE,H200 = H100 compute; dense
+NVIDIA H200 (SXM),TF32,float,32,494.5,FALSE,H200 = H100; derived 989 sparse / 2
+NVIDIA H200 (SXM),BF16,float,16,989.5,FALSE,H200 = H100; derived 1979 sparse / 2
+NVIDIA H200 (SXM),FP16,float,16,989.5,FALSE,H200 = H100; derived 1979 sparse / 2
+NVIDIA H200 (SXM),FP8,float,8,1979,FALSE,H200 = H100; derived 3958 sparse / 2
+NVIDIA H200 (SXM),INT8,int,8,1979,FALSE,H200 = H100; derived 3958 sparse / 2
+NVIDIA B200,FP16,float,16,2250,FALSE,B200 dense (secondary; sparse headline 2x)
+NVIDIA B200,BF16,float,16,2250,FALSE,B200 dense (secondary)
+NVIDIA B200,FP8,float,8,4500,FALSE,B200 dense (secondary)
+NVIDIA B200,INT8,int,8,4500,FALSE,B200 dense (secondary)
+NVIDIA B200,FP4,float,4,9000,FALSE,B200 dense (secondary); FP4 new on Blackwell (bit_length 4)
+AMD MI300X,FP16,float,16,1307.4,FALSE,AMD MI300X matrix dense (amd.com)
+AMD MI300X,BF16,float,16,1307.4,FALSE,AMD MI300X matrix dense (amd.com)
+AMD MI300X,FP8,float,8,2614.9,FALSE,AMD MI300X matrix dense (amd.com)
+AMD MI300X,INT8,int,8,2614.9,FALSE,AMD MI300X matrix dense (amd.com)
+AMD MI325X,FP16,float,16,1307.4,FALSE,MI325X = MI300X compute; dense (amd.com)
+AMD MI325X,BF16,float,16,1307.4,FALSE,MI325X = MI300X compute; dense (amd.com)
+AMD MI325X,FP8,float,8,2614.9,FALSE,MI325X = MI300X compute; dense (amd.com)
+AMD MI325X,INT8,int,8,2614.9,FALSE,MI325X = MI300X compute; dense (amd.com)
