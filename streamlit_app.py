@@ -75,26 +75,44 @@ def build_chip(name, values, sparsity, die, nonplanar, ic, mem):
 
 
 def reference_plot(chip_tpp):
-    fig, ax = plt.subplots(figsize=(8, 2.4))
+    fig, ax = plt.subplots(figsize=(9, 2.8))
+    ax.set_xscale("log")
+    ax.set_xlim(1000, 1e6)
+    ax.set_ylim(-1, 1)
+
+    # y in axes-fraction so labels are always inside the box, regardless of data
+    trans = ax.get_xaxis_transform()
+
+    # shade the controlled region (TPP >= 4800)
+    ax.axvspan(4800, 1e6, color="#c5221f", alpha=0.06, zorder=0)
+
     for val, color, label in [
         (1600, "#9aa0a6", "1,600 floor"),
         (4800, "#c5221f", "4,800 control"),
         (21000, "#7b1fa2", "21,000 ceiling"),
     ]:
-        ax.axvline(val, color=color, linestyle="--", linewidth=1)
-        ax.text(val, 1.05, label, rotation=90, fontsize=7, color=color, va="bottom", ha="center")
+        ax.axvline(val, color=color, linestyle="--", linewidth=1.2, zorder=1)
+        ax.text(val, 0.9, label, transform=trans, rotation=90,
+                fontsize=8, color=color, va="top", ha="right")
+
+    # dataset chips as a grey reference row
     try:
         for c in load_chips():
-            ax.scatter(c.tpp(), 0, s=40, c="#bbbbbb", zorder=2)
+            ax.scatter(c.tpp(), 0, s=45, c="#bbbbbb", zorder=2)
     except Exception:
         pass
-    ax.scatter(chip_tpp, 0, s=260, marker="*", c="#1a73e8",
-               edgecolors="black", zorder=3, label="your chip")
-    ax.set_xscale("log")
-    ax.set_xlim(1000, 1e6)
+
+    # the user's chip: big star + TPP label
+    ax.scatter(chip_tpp, 0, s=320, marker="*", c="#1a73e8",
+               edgecolors="black", linewidths=0.7, zorder=3, label="your chip")
+    ax.annotate(f"{chip_tpp:,.0f}", (chip_tpp, 0), textcoords="offset points",
+                xytext=(0, 14), ha="center", fontsize=9, weight="bold", color="#1a73e8")
+
     ax.set_yticks([])
+    for spine in ("left", "right", "top"):
+        ax.spines[spine].set_visible(False)
     ax.set_xlabel("Total Processing Performance (TPP, log scale) — grey = dataset chips")
-    ax.legend(loc="upper right", fontsize=8)
+    ax.legend(loc="upper left", fontsize=8, framealpha=0.9)
     fig.tight_layout()
     return fig
 
