@@ -119,7 +119,7 @@ def reference_plot(chip_tpp):
 
 # =============================================================================
 st.set_page_config(page_title="Chip Export-Control Classifier", page_icon="🧮", layout="centered")
-st.title("🧮 Classify your own chip")
+st.title("Classify your own chip")
 st.caption("Enter an accelerator's specs and see how it classifies under U.S. advanced-computing "
            "export controls (ECCN 3A090) across three rule vintages. Same engine as the analysis.")
 
