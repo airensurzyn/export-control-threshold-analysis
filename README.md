@@ -3,8 +3,8 @@
 Reconstructing the numerical lines in U.S. advanced-computing export controls from
 primary regulatory text, and scoring commercial AI accelerators against them over time.
 
-U.S. export controls do not ban "AI chips" — they draw **bright numerical lines** and
-let hardware walk right up to them. The controlling metric, **Total Processing
+U.S. export controls do not ban "AI chips" — they draw **numerical lines** and
+let chip designers spec just below thresholds. The controlling metric, **Total Processing
 Performance (TPP)**, is defined in the Export Administration Regulations (ECCN 3A090).
 This project implements that definition from the reg text, builds a provenance-tracked
 dataset of real accelerators, and classifies each chip under successive rule *vintages*
