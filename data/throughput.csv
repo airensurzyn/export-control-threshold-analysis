@@ -1,0 +1,6 @@
+name,bit_length,dense_tops,with_sparsity,source
+NVIDIA A100 (SXM 80GB),16,312,FALSE,UNVERIFIED - replace with datasheet URL (FP16 dense TFLOPS)
+NVIDIA A100 (SXM 80GB),8,624,FALSE,UNVERIFIED - replace with datasheet URL (INT8 dense TOPS)
+NVIDIA H100 (SXM),16,989,FALSE,UNVERIFIED - replace with datasheet URL (FP16 dense; sparse headline is 2x)
+NVIDIA H100 (SXM),8,1979,FALSE,UNVERIFIED - replace with datasheet URL (FP8/INT8 dense; sparse headline is 2x)
+NVIDIA H20,16,148,FALSE,UNVERIFIED - replace with datasheet URL (FP16 dense)

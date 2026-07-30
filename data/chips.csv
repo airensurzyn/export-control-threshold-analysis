@@ -1,0 +1,4 @@
+name,die_area_mm2,nonplanar_node,node,die_area_source
+NVIDIA A100 (SXM 80GB),826.0,TRUE,TSMC N7,UNVERIFIED - replace with datasheet/die-shot source URL
+NVIDIA H100 (SXM),814.0,TRUE,TSMC N4,UNVERIFIED - replace with datasheet/die-shot source URL
+NVIDIA H20,814.0,TRUE,TSMC N4,UNVERIFIED - replace with datasheet/die-shot source URL
