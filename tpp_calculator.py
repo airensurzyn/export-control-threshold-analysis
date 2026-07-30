@@ -18,10 +18,12 @@ Regulatory definitions:
 """
 
 from __future__ import annotations
+
 from dataclasses import dataclass, field
 
 
-# --- Time-versioned thresholds ----------------------
+# --- Time-versioned thresholds (extend as rules change) ----------------------
+# Encode the lines as they stood on each date so a chip's status can migrate.
 THRESHOLDS = {
     "2023-10-17": {"tpp_control": 4800, "tpp_density_floor": 1600, "density": 5.92},
     # 2022-10-07 original rule used a different metric (bits x TOPS); model
@@ -37,6 +39,10 @@ class Chip:
     dense_throughput: dict          # {bit_length: dense_tops}
     die_area_mm2: float | None      # applicable (logic, non-planar node) die area
     nonplanar_node: bool = True     # FinFET/GAA -> die area counts toward density
+    interconnect_gbps: float | None = None      # bidirectional I/O rate (2022 rule)
+    memory_bandwidth_gbps: float | None = None   # DRAM bandwidth (2026 license overlay)
+    release_date: str | None = None              # "YYYY-MM"
+    market: str = ""                             # "global" | "china"
     source_notes: str = ""
 
     def tpp(self) -> float:
