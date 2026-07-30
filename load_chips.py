@@ -36,7 +36,12 @@ def load_chips(data_dir: str = DATA_DIR) -> list[Chip]:
                     f"{row['name']} @ {row['bit_length']}b is flagged with_sparsity=true. "
                     "TPP requires dense values -- halve it and set the flag to false."
                 )
-            throughput[row["name"]][int(row["bit_length"])] = float(row["dense_tops"])
+            # A chip can list several precisions at the same bit length
+            # (e.g. FP32 & TF32 at 32b). TPP takes the MAX, so keep the highest.
+            bits = int(row["bit_length"])
+            val = float(row["dense_tops"])
+            prev = throughput[row["name"]].get(bits, 0.0)
+            throughput[row["name"]][bits] = max(prev, val)
 
     # 2) chip metadata -> build Chip objects
     chips: list[Chip] = []
@@ -44,11 +49,15 @@ def load_chips(data_dir: str = DATA_DIR) -> list[Chip]:
         for row in csv.DictReader(f):
             name = row["name"]
             die = row["die_area_mm2"].strip()
+            mem = row.get("memory_bandwidth_gbps", "").strip()
+            ic = row.get("interconnect_gbps", "").strip()
             chips.append(Chip(
                 name=name,
                 dense_throughput=throughput.get(name, {}),
                 die_area_mm2=float(die) if die else None,
                 nonplanar_node=_to_bool(row["nonplanar_node"]),
+                interconnect_gbps=float(ic) if ic else None,
+                memory_bandwidth_gbps=float(mem) if mem else None,
                 source_notes=row.get("die_area_source", ""),
             ))
     return chips
@@ -59,6 +68,9 @@ GROUND_TRUTH = {
     "NVIDIA A100 (SXM 80GB)": True,
     "NVIDIA H100 (SXM)": True,
     "NVIDIA H20": False,
+    # A800/H800 kept full compute -> caught by the 2023 TPP rule (loophole closed)
+    "NVIDIA A800 (SXM 80GB)": True,
+    "NVIDIA H800 (SXM)": True,
 }
 
 
